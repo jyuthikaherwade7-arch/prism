@@ -1,0 +1,6 @@
+{
+  "name": "PRISM'26 - Youth Cultural & Innovation Convergence",
+  "description": "The official PRISM'26 platform featuring Ideathon, Sociothon, Kala-Kriti, Conclave, custom interactive animated stickers, and dedicated event registrations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

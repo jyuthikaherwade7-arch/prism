@@ -7,7 +7,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     category: 'PRISM Highlights',
     caption: 'Social Welfare & Development Committee, Vishwakarma Institute of Technology, Pune on stage at PRISM’25.',
     year: 'Annual Gathering',
-    image: 'prism highlights.jpeg'
+    image: '/prism highlights.jpeg'
   },
   {
     id: 'vishwa-aakhyan',
@@ -15,7 +15,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     category: 'Vishwa Aakhyan',
     caption: 'Vocalists presenting devotional and folk melodies in the grand cultural finale celebrating Maharashtra’s heritage.',
     year: 'Cultural Finale',
-    image: 'vishwa aakhyan.jpeg'
+    image: '/vishwa aakhyan.jpeg'
   },
   {
     id: 'conclave',
@@ -23,7 +23,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     category: 'Conclave',
     caption: 'Thought-exchange panel discussion on stage exploring youth civic participation, social sustainability, and governance.',
     year: 'Thought-Exchange Panel',
-    image: 'conclave.jpeg'
+    image: '/conclave.jpeg'
   },
   {
     id: 'ideathon',
@@ -31,6 +31,6 @@ export const GALLERY_DATA: GalleryItem[] = [
     category: 'Ideathon',
     caption: 'Student teams pitching domain-wise social solution flowcharts and system frameworks to the evaluation jury.',
     year: 'Pitch & Evaluation',
-    image: 'ideothon.jpeg'
+    image: '/ideothon.jpeg'
   }
 ];

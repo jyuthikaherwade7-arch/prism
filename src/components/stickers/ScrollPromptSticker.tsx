@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { ArrowDown, Sparkles } from 'lucide-react';
 
 export const ScrollPromptSticker: React.FC = () => {
@@ -30,20 +30,20 @@ export const ScrollPromptSticker: React.FC = () => {
       <button
         onClick={() => setIsInteracted(!isInteracted)}
         onMouseEnter={() => setIsInteracted(true)}
-        className="flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[#0B132B]/90 border border-[#D4AF37]/35 shadow-xl backdrop-blur-md text-xs font-medium text-slate-200 hover:text-[#FEF08A] hover:border-[#D4AF37] transition-all group duration-200"
+        className="flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[#0A1931]/95 border border-[#4A7FA7]/60 shadow-xl backdrop-blur-md text-xs font-medium text-[#B3CFE5] hover:text-[#F6FAFD] hover:border-[#B3CFE5] transition-all group duration-200"
         aria-label="Scroll encouragement indicator"
       >
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4A7FA7] opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#B3CFE5]"></span>
         </span>
         <span className="tracking-wide">
           {isInteracted ? "Good. There's more." : "Still scrolling?"}
         </span>
         {isInteracted ? (
-          <Sparkles className="w-3.5 h-3.5 text-[#FEF08A]" />
+          <Sparkles className="w-3.5 h-3.5 text-[#B3CFE5]" />
         ) : (
-          <ArrowDown className="w-3.5 h-3.5 text-[#D4AF37] group-hover:translate-y-0.5 transition-transform" />
+          <ArrowDown className="w-3.5 h-3.5 text-[#4A7FA7] group-hover:translate-y-0.5 transition-transform" />
         )}
       </button>
     </motion.div>

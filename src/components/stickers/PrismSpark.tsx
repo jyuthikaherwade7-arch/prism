@@ -12,7 +12,7 @@ export const PrismSpark: React.FC<PrismSparkProps> = ({
   className = '',
   size = 20,
   delay = 0,
-  color = '#D4AF37'
+  color = '#B3CFE5'
 }) => {
   return (
     <motion.svg

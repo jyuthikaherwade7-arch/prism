@@ -29,6 +29,11 @@ export interface EventItem {
     schedule: { time: string; activity: string }[];
   }[];
   rounds?: EventRound[];
+  prizePool?: {
+    winner: string;
+    runnerUp: string;
+    total?: string;
+  };
   registrationUrl: string;
   buttonLabel?: string;
   registrationStatus: 'open' | 'opening_soon';

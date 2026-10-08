@@ -81,6 +81,27 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onNavigate }) => {
 
       <div className="max-w-6xl mx-auto space-y-10">
         
+        {/* FIRST: Official Video Teaser - Glimpses of PRISM'25 */}
+        <div className="group relative rounded-3xl bg-[#1A3D63]/85 border-2 border-[#4A7FA7]/60 overflow-hidden shadow-2xl">
+          <div className="relative w-full aspect-video max-h-[500px] bg-black overflow-hidden flex items-center justify-center">
+            <video
+              src="/prismteaser1.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-contain sm:object-cover bg-black"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div className="p-5 sm:p-6 bg-[#0A1931] border-t border-[#1A3D63]">
+            <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-[#F6FAFD] leading-tight">
+              We've been here before, but this time, it's different.👀✨
+            </h3>
+          </div>
+        </div>
+
         {/* Featured Card: PRISM Highlights */}
         {prismHighlights && (
           <div

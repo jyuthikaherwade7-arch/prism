@@ -18,9 +18,9 @@ export const GALLERY_DATA: GalleryItem[] = [
     image: '/vishwa aakhyan.jpeg'
   },
   {
-    id: 'conclave',
-    title: 'Glimpses of Conclave',
-    category: 'Conclave',
+    id: 'Open Mind',
+    title: 'Glimpses of Open Mind',
+    category: 'Open Mind',
     caption: 'Thought-exchange panel discussion on stage exploring youth civic participation, social sustainability, and governance.',
     year: 'Thought-Exchange Panel',
     image: '/conclave.jpeg'

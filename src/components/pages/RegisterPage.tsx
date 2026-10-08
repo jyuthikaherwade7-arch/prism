@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { THREE_REGISTER_OPTIONS, RegisterOptionItem } from '../../data/eventsData';
-import { TicketSticker } from '../stickers/TicketSticker';
 import { PrismSpark } from '../stickers/PrismSpark';
 import { LightbulbSticker } from '../stickers/LightbulbSticker';
 import { GlobeSticker } from '../stickers/GlobeSticker';
 import { TheatreMasksSticker } from '../stickers/TheatreMasksSticker';
-import { ExternalLink, AlertCircle } from 'lucide-react';
+import { ExternalLink, AlertCircle, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 export const RegisterPage: React.FC = () => {
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
@@ -31,15 +30,18 @@ export const RegisterPage: React.FC = () => {
     return item.buttonLabel || 'REGISTER →';
   };
 
+  const registrationSteps = [
+    "Click on the 'Event' tab.",
+    "Select Organising Institute.",
+    "Select Event",
+    "Click on Pay fees.",
+    "Select Payment Gateway “PAYTM” and proceed for payment."
+  ];
+
   return (
     <div className="min-h-screen bg-[#0A1931] text-[#F6FAFD] py-12 px-4 sm:px-6 lg:px-8">
       {/* Hero Header Section */}
       <div className="max-w-5xl mx-auto text-center space-y-6 pt-4 pb-14">
-        
-        {/* Ticket Sticker */}
-        <div className="flex justify-center mb-4">
-          <TicketSticker size="md" />
-        </div>
 
         {/* Hero Tag */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1A3D63] border border-[#4A7FA7]/60 text-[#B3CFE5] text-xs font-bold tracking-widest uppercase shadow-sm">
@@ -174,8 +176,64 @@ export const RegisterPage: React.FC = () => {
         </div>
       </div>
 
+      {/* User Requested: Step Guide to Register More Events for VIT Students / Participants */}
+      <div className="max-w-4xl mx-auto mt-14 p-6 sm:p-8 rounded-2xl bg-[#1A3D63]/85 border-2 border-[#4A7FA7]/60 shadow-2xl">
+        <div className="space-y-4">
+          
+          {/* Header */}
+          <div className="border-b border-[#0A1931] pb-4">
+            <span className="inline-block px-3 py-1 rounded-full bg-[#0A1931] border border-[#4A7FA7]/50 text-[11px] font-bold uppercase tracking-wider text-[#B3CFE5] mb-2">
+              Registration Guide
+            </span>
+            <h3 className="font-display text-xl sm:text-2xl font-extrabold text-[#F6FAFD]">
+              Follow these steps to register for more events
+            </h3>
+            <p className="text-xs sm:text-sm text-[#B3CFE5] font-semibold mt-1">
+              For VIT students / Participants registration:
+            </p>
+          </div>
+
+          {/* Login credential instruction */}
+          <div className="p-4 rounded-xl bg-[#0A1931]/90 border border-[#4A7FA7]/40 text-xs sm:text-sm text-[#B3CFE5] space-y-1">
+            <p>
+              Students should login on:{' '}
+              <a
+                href="https://learner.vierp.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#F6FAFD] font-mono font-bold underline hover:text-[#B3CFE5] inline-flex items-center gap-1"
+              >
+                <span>https://learner.vierp.in</span>
+                <ExternalLink className="w-3.5 h-3.5 inline" />
+              </a>
+            </p>
+            <p className="text-xs text-[#B3CFE5]/80">
+              using <strong className="text-[#F6FAFD]">PRN No.</strong> as login and password.
+            </p>
+          </div>
+
+          {/* Steps List */}
+          <div className="pt-2 space-y-2.5">
+            {registrationSteps.map((step, index) => (
+              <div
+                key={index}
+                className="flex items-start gap-3 p-3 rounded-lg bg-[#0A1931]/60 border border-[#1A3D63] text-xs sm:text-sm text-[#F6FAFD] transition-colors hover:bg-[#0A1931]/90"
+              >
+                <span className="text-[#4A7FA7] font-bold font-mono shrink-0 select-none text-base leading-none pt-0.5">
+                  &gt;&gt;
+                </span>
+                <span className="font-medium text-[#F6FAFD] leading-relaxed">
+                  {step}
+                </span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
       {/* Committee Reassurance */}
-      <div className="max-w-3xl mx-auto mt-16 p-6 rounded-2xl bg-[#1A3D63]/70 border border-[#4A7FA7]/50 text-center space-y-2">
+      <div className="max-w-3xl mx-auto mt-14 p-6 rounded-2xl bg-[#1A3D63]/70 border border-[#4A7FA7]/50 text-center space-y-2">
         <h4 className="text-sm font-bold text-[#F6FAFD]">
           Social Welfare & Development Committee (SWD)
         </h4>

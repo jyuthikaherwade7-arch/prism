@@ -18,7 +18,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           Full Form: Public Reforms, Innovation, Sustainability & Management
           Social Welfare & Development Committee, VIT Pune
           ================================================== */}
-      <section className="relative min-h-[85vh] flex items-center justify-center pt-10 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center justify-center pt-10 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Backdrop Image with Scrim */}
         <div className="absolute inset-0 z-0">
           <img
@@ -100,6 +100,46 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <span className="block font-display text-2xl sm:text-3xl font-bold text-[#B3CFE5] tabular-nums">SWD</span>
               <span className="text-[#B3CFE5]">Social Welfare Committee</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================================================
+          VISHWA AAKHYAN VIDEO SECTION
+          "Experience the essence of marathi culture"
+          (Placed after register hub below that)
+          ================================================== */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto border-t border-[#1A3D63]">
+        <div className="text-center space-y-3 mb-8">
+          <span className="inline-block px-3.5 py-1 rounded-full bg-[#1A3D63] border border-[#4A7FA7]/60 text-[11px] font-bold uppercase tracking-wider text-[#B3CFE5] shadow-sm">
+            Cultural Finale · Vishwa Aakhyan
+          </span>
+          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#F6FAFD] tracking-tight">
+            When Vishwaakhyan sings, every heart resonates and joy flows.✨ 🎶
+          </h3>
+          <p className="text-xs sm:text-sm text-[#B3CFE5] max-w-xl mx-auto leading-relaxed">
+            Relive the heartfelt devotional abhang melodies, classical instruments, and theatrical stage narrations from the cultural culmination of PRISM.
+          </p>
+        </div>
+
+        {/* Video Player Card */}
+        <div className="relative rounded-3xl overflow-hidden bg-[#1A3D63]/85 border-2 border-[#4A7FA7]/60 shadow-[0_16px_40px_rgba(10,25,49,0.7)] group">
+          <video
+            src="/vishwaakhyan.mp4"
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full max-h-[540px] aspect-video object-cover bg-black"
+          >
+            Your browser does not support the video tag.
+          </video>
+          <div className="p-4 sm:p-5 bg-[#0A1931] border-t border-[#1A3D63] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+            <span className="text-[#F6FAFD] font-semibold">
+              Vishwa Aakhyan — Official Cultural Performance Archive
+            </span>
+            <span className="text-[#B3CFE5]">
+              Social Welfare & Development Committee, VIT Pune
+            </span>
           </div>
         </div>
       </section>

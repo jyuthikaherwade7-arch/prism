@@ -3,14 +3,16 @@ import { PageId, EventItem } from '../../types';
 import {
   SOCIOTHON_EVENT,
   IDEATHON_EVENT,
+  VISHWA_AAKHYAN_EVENT,
   OTHER_EVENTS_ORDERED
 } from '../../data/eventsData';
 import { GlobeSticker } from '../stickers/GlobeSticker';
 import { LightbulbSticker } from '../stickers/LightbulbSticker';
 import { TheatreMasksSticker } from '../stickers/TheatreMasksSticker';
 import { SpeechBubbleSticker } from '../stickers/SpeechBubbleSticker';
+import { MicrophoneSticker } from '../stickers/MicrophoneSticker';
 import { PrismSpark } from '../stickers/PrismSpark';
-import { Clock, MapPin, CheckCircle2, Sparkles, ChevronRight } from 'lucide-react';
+import { Clock, MapPin, CheckCircle2, Sparkles, ChevronRight, Trophy } from 'lucide-react';
 
 interface ExploreEventsPageProps {
   onNavigate: (page: PageId) => void;
@@ -34,9 +36,15 @@ export const ExploreEventsPage: React.FC<ExploreEventsPageProps> = () => {
         return <GlobeSticker size="sm" showLabel={false} />;
       case 'ideathon':
         return <LightbulbSticker size="sm" showLabel={false} />;
+      case 'vishwa-aakhyan':
+        return <TheatreMasksSticker size="sm" showLabel={false} />;
+      case 'unmute':
+        return <MicrophoneSticker size="sm" showLabel={false} />;
       case 'kala-kriti':
         return <TheatreMasksSticker size="sm" showLabel={false} />;
-      case 'conclave':
+      case 'ngo-talks':
+        return <SpeechBubbleSticker size="sm" showLabel={false} />;
+      case 'open-mind':
         return <SpeechBubbleSticker size="sm" showLabel={false} />;
       default:
         return <PrismSpark size={18} color="#B3CFE5" />;
@@ -52,13 +60,13 @@ export const ExploreEventsPage: React.FC<ExploreEventsPageProps> = () => {
         onClick={() => toggleCard(event.id)}
         className={`group relative rounded-2xl bg-[#1A3D63]/85 transition-all duration-300 border overflow-hidden cursor-pointer select-none ${
           isFlagship
-            ? 'p-6 sm:p-8 min-h-[300px]'
-            : 'p-6 min-h-[230px]'
+            ? 'p-6 sm:p-7 min-h-[200px]'
+            : 'p-6 min-h-[220px]'
         } ${
           isExpanded
             ? 'border-[#B3CFE5] shadow-[0_12px_32px_rgba(74,127,167,0.35)] ring-1 ring-[#B3CFE5]/50'
             : isFlagship
-            ? 'border-[#4A7FA7] hover:border-[#B3CFE5] shadow-xl hover:-translate-y-1'
+            ? 'border-[#4A7FA7] hover:border-[#B3CFE5] shadow-xl hover:-translate-y-0.5'
             : 'border-[#1A3D63] hover:border-[#4A7FA7] shadow-lg hover:-translate-y-1'
         }`}
       >
@@ -75,9 +83,17 @@ export const ExploreEventsPage: React.FC<ExploreEventsPageProps> = () => {
           {/* Top Bar: Track & Sticker */}
           <div>
             <div className="flex items-center justify-between gap-3 mb-3">
-              <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border bg-[#0A1931] text-[#B3CFE5] border-[#4A7FA7]/50">
-                {event.track || 'Track'}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border bg-[#0A1931] text-[#B3CFE5] border-[#4A7FA7]/50">
+                  {event.track || 'Track'}
+                </span>
+                {event.prizePool && (
+                  <span className="text-[11px] font-bold text-[#F6FAFD] bg-[#0A1931] border border-[#4A7FA7]/60 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                    <Trophy className="w-3 h-3 text-[#B3CFE5]" />
+                    <span>Pool: {event.prizePool.total}</span>
+                  </span>
+                )}
+              </div>
               <div className="shrink-0 h-9 w-9 flex items-center justify-center">
                 {renderSticker(event.id)}
               </div>
@@ -92,22 +108,60 @@ export const ExploreEventsPage: React.FC<ExploreEventsPageProps> = () => {
               {event.name}
             </h3>
 
-            {/* Default State: One-Liner Description */}
+            {/* Default State: One-Liner Description & Prize Callout */}
             {!isExpanded ? (
-              <div className="mt-2.5 space-y-4">
+              <div className="mt-2.5 space-y-3.5">
                 <p className="text-xs sm:text-sm text-[#B3CFE5] leading-relaxed">
                   {event.oneLiner}
                 </p>
+
+                {/* Prize pool callout banner if available */}
+                {event.prizePool && (
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-semibold pt-1">
+                    <span className="px-2.5 py-1 rounded-lg bg-[#0A1931]/80 border border-[#4A7FA7]/40 text-[#F6FAFD]">
+                      Winner: <strong className="text-[#F6FAFD]">{event.prizePool.winner}</strong>
+                    </span>
+                    <span className="px-2.5 py-1 rounded-lg bg-[#0A1931]/80 border border-[#4A7FA7]/40 text-[#B3CFE5]">
+                      Runner-up: <strong className="text-[#F6FAFD]">{event.prizePool.runnerUp}</strong>
+                    </span>
+                  </div>
+                )}
                 
                 {/* "Click to explore" prompt */}
                 <div className="pt-3 border-t border-[#1A3D63] flex items-center justify-between text-xs text-[#B3CFE5] group-hover:text-[#F6FAFD] transition-colors">
-                  <span className="font-bold tracking-wide">Click to explore</span>
+                  <span className="font-bold tracking-wide">Click to explore details</span>
                   <ChevronRight className="w-4 h-4 text-[#4A7FA7] group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             ) : (
               /* Expanded State */
               <div className="mt-4 space-y-4 transition-all duration-300">
+                
+                {/* Dedicated Prize Pool Box when available */}
+                {event.prizePool && (
+                  <div className="p-3.5 rounded-xl bg-[#0A1931]/95 border border-[#4A7FA7]/70 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-inner">
+                    <div className="flex items-center gap-2.5">
+                      <Trophy className="w-4 h-4 text-[#B3CFE5] shrink-0" />
+                      <div>
+                        <span className="block text-[10px] font-bold text-[#B3CFE5] uppercase tracking-wider">
+                          OFFICIAL CASH PRIZE POOL
+                        </span>
+                        <span className="text-sm font-extrabold text-[#F6FAFD]">
+                          Total Pool: {event.prizePool.total}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-semibold">
+                      <span className="px-3 py-1.5 rounded-lg bg-[#1A3D63] border border-[#4A7FA7]/60 text-[#F6FAFD]">
+                        Winner: <strong className="text-[#F6FAFD] font-mono text-sm">{event.prizePool.winner}</strong>
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-[#1A3D63] border border-[#4A7FA7]/60 text-[#B3CFE5]">
+                        Runner-up: <strong className="text-[#F6FAFD] font-mono text-sm">{event.prizePool.runnerUp}</strong>
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 {/* Time & Location Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 p-3 rounded-xl bg-[#0A1931]/95 border border-[#1A3D63] text-xs">
                   <div className="flex items-start gap-2">
@@ -144,20 +198,6 @@ export const ExploreEventsPage: React.FC<ExploreEventsPageProps> = () => {
                   </ul>
                 </div>
 
-                {/* Extra Flagship Round 1 & Round 2 info */}
-                {isFlagship && event.rounds && (
-                  <div className="pt-2 border-t border-[#1A3D63] grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-                    <div className="p-2 rounded-lg bg-[#0A1931]/80 border border-[#1A3D63]">
-                      <span className="font-bold text-[#F6FAFD] block">Round 1 (10 AM - 12 PM)</span>
-                      <span className="text-[#B3CFE5]">Auditorium · Idea Pitch & PPT</span>
-                    </div>
-                    <div className="p-2 rounded-lg bg-[#0A1931]/80 border border-[#1A3D63]">
-                      <span className="font-bold text-[#B3CFE5] block">Round 2 (1 PM - 3 PM)</span>
-                      <span className="text-[#B3CFE5]">Auditorium · Prototype / Final Defense</span>
-                    </div>
-                  </div>
-                )}
-
                 {/* Click to collapse indicator & direct register action */}
                 <div className="pt-3 border-t border-[#1A3D63] flex items-center justify-between text-[11px]">
                   <span className="text-[#B3CFE5] italic">Location: Auditorium</span>
@@ -168,9 +208,9 @@ export const ExploreEventsPage: React.FC<ExploreEventsPageProps> = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#4A7FA7] hover:bg-[#1A3D63] text-[#F6FAFD] font-extrabold text-[11px] tracking-wide transition-colors border border-[#B3CFE5]/30 shadow-sm"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#4A7FA7] hover:bg-[#1A3D63] text-[#F6FAFD] font-extrabold text-xs tracking-wide transition-colors border border-[#B3CFE5]/30 shadow-sm"
                     >
-                      <span>REGISTER</span>
+                      <span>{event.buttonLabel || 'REGISTER'}</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -209,26 +249,27 @@ export const ExploreEventsPage: React.FC<ExploreEventsPageProps> = () => {
           EXPLORE PRISM'26 TRACKS
         </h1>
         <p className="text-xs sm:text-sm text-[#B3CFE5] max-w-xl mx-auto leading-relaxed">
-          Click on any event card below to explore its schedule, location (Auditorium), and key guidelines.
+          Click on any event card below to explore its schedule, prize pool, location (Auditorium), and key guidelines.
         </p>
       </div>
 
       <div className="max-w-7xl mx-auto space-y-12">
         
-        {/* Flagships */}
+        {/* Flagships: Each in one line as a horizontal card — Sociothon in one line, then Ideathon next, then Vishwa Aakhyan */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#B3CFE5]">
             <Sparkles className="w-3.5 h-3.5 text-[#4A7FA7]" />
-            <span>Flagship Competitions · Auditorium</span>
+            <span>Flagship Summits & Competitions · Auditorium</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 gap-6">
             {renderEventCard(SOCIOTHON_EVENT, true)}
             {renderEventCard(IDEATHON_EVENT, true)}
+            {renderEventCard(VISHWA_AAKHYAN_EVENT, true)}
           </div>
         </div>
 
-        {/* All Other Events */}
+        {/* All Other Events: Kala-Kriti, NGO Talks, Open Mind, UNMUTE */}
         <div className="space-y-4 pt-4 border-t border-[#1A3D63]">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#B3CFE5]">
             <PrismSpark size={12} color="#4A7FA7" />
